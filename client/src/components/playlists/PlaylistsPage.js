@@ -29,11 +29,28 @@ function PlaylistsPage() {
       });
   };
 
+  const handleDeletePlaylist = (playlistId) => {
+    fetch(`http://0.0.0.0:8000/playlists/${playlistId}`, {
+      method: "DELETE",
+      mode: "cors",
+    })
+      .then(() => {
+        setPlaylists(playlists.filter(playlist => playlist.id !== playlistId));
+      })
+      .catch((error) => {
+        console.error("Error deleting playlist:", error);
+      });
+  };
+
   return (
     <>
       <PlaylistsForm onSubmit={handleCreatePlaylist} />
       {playlists.map((playlist, ix) => (
-        <PlaylistRow key={ix} playlist={playlist} />
+        <PlaylistRow 
+          key={ix} 
+          playlist={playlist} 
+          onDelete={handleDeletePlaylist}
+        />
       ))}
     </>
   );
