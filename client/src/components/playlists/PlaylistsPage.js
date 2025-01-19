@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PlaylistsForm from "./PlaylistsForm";
+import PlaylistRow from './PlaylistRow';
 
 function PlaylistsPage() {
   const [playlists, setPlaylists] = useState([]);
@@ -32,10 +33,7 @@ function PlaylistsPage() {
     <>
       <PlaylistsForm onSubmit={handleCreatePlaylist} />
       {playlists.map((playlist, ix) => (
-        <div key={ix} className="playlist-card">
-          <h3>{playlist.name}</h3>
-          <p>{playlist.tracks?.length || 0} tracks</p>
-        </div>
+        <PlaylistRow key={ix} playlist={playlist} />
       ))}
     </>
   );

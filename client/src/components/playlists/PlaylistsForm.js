@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from "./Playlists.module.css";
 
 function PlaylistsForm({ onSubmit }) {
   const [formData, setFormData] = useState({
@@ -21,23 +22,20 @@ function PlaylistsForm({ onSubmit }) {
   };
 
   return (
-    <div className="playlist-form">
-      <h2>Create New Playlist</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Playlist Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+    <form onSubmit={handleSubmit} className={styles.playlistForm}>
+        <div className={styles.fields}>
+            <label htmlFor="name">Playlist Name:</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+            />
+            <button type="submit">Add</button>
         </div>
-        <button type="submit">Create Playlist</button>
-      </form>
-    </div>
+    </form>
   );
 }
 
