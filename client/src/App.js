@@ -64,21 +64,20 @@ function App() {
       });
   };
 
-  const handleAddTrackToPlaylist = (trackId, playlistId) => {
+  const handleAddTrackToPlaylist = (track, playlistId) => {
     fetch(`http://0.0.0.0:8000/playlists/${playlistId}/add_track/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       mode: "cors",
-      body: JSON.stringify({ track_id: trackId }),
+      body: JSON.stringify({ track_id: track.id }),
     })
-      .then((res) => res.json())
       .then(() => {
         setPlaylists(
           playlists.map((playlist) =>
             playlist.id === playlistId
-              ? { ...playlist, tracks: [...playlist.tracks, trackId] }
+              ? { ...playlist, tracks: [...playlist.tracks, track] }
               : playlist
           )
         );

@@ -3,6 +3,8 @@
   align-items: center;
   height: 5rem;
   border-bottom: 1px solid #333;
+  cursor: pointer;
+  position: relative;
 }
 
 .playlistRow:last-child {
@@ -41,7 +43,8 @@
 }
 
 .playlistForm {
-  padding: 0rem 0 2rem 0;
+  height: 4em;
+  padding-top: 1rem;
   border-bottom: 1px solid #333;
 }
 
@@ -79,4 +82,29 @@
   margin-top: 2rem;
   text-align: center;
   color: #767676;
+}
+
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow {
+  display: inline-block;
+  margin-right: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.arrow::before {
+  content: "▶";
+  font-size: 0.8rem;
+  color: #767676;
+}
+
+.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+.tracksList {
+  padding-left: 1.5rem;
 }

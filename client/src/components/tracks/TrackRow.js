@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./TrackRow.module.css";
+import styles from "./Tracks.module.css";
 import playIcon from "../../assets/play.svg";
 import addIcon from "../../assets/add.svg";
 
@@ -8,7 +8,7 @@ function TrackRow({ track, handlePlay, playlists = [], onAddToPlaylist }) {
 
   const handleAddToPlaylist = (playlistId) => {
     if (onAddToPlaylist) {
-      onAddToPlaylist(track.id, playlistId);
+      onAddToPlaylist(track, playlistId);
       setShowMenu(false);
     }
   };
