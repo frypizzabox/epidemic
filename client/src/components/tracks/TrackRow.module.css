@@ -63,3 +63,9 @@
 .playlistMenu div:hover {
   background: #383838;
 }
+
+.noTracks {
+  margin-top: 2rem;
+  text-align: center;
+  color: #767676;
+}
