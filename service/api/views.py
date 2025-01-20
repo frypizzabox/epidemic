@@ -31,3 +31,10 @@ class PlaylistViewSet(viewsets.ModelViewSet):
             
         playlist.tracks.add(track)
         return Response({'message': 'Track added successfully'}, status=200)
+    
+    @action(detail=True, methods=['post'])
+    def remove_track(self, request, pk=None):
+        playlist = self.get_object()
+        track_id = request.data.get('track_id')
+        playlist.tracks.remove(track_id)
+        return Response({'message': 'Track removed successfully'}, status=200)

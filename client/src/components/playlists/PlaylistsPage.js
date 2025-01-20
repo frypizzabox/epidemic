@@ -3,7 +3,13 @@ import PlaylistsForm from "./PlaylistsForm";
 import PlaylistRow from "./PlaylistRow";
 import styles from "./Playlists.module.css";
 
-function PlaylistsPage({ playlists, onCreatePlaylist, onDeletePlaylist }) {
+function PlaylistsPage({
+  playlists,
+  onCreatePlaylist,
+  onDeletePlaylist,
+  onRemoveTrackFromPlaylist,
+  handlePlay,
+}) {
   return (
     <>
       <PlaylistsForm onSubmit={onCreatePlaylist} />
@@ -15,6 +21,8 @@ function PlaylistsPage({ playlists, onCreatePlaylist, onDeletePlaylist }) {
             key={ix}
             playlist={playlist}
             onDelete={onDeletePlaylist}
+            onRemoveTrackFromPlaylist={onRemoveTrackFromPlaylist}
+            handlePlay={handlePlay}
           />
         ))
       )}

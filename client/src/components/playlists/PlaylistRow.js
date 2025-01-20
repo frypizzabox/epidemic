@@ -1,8 +1,13 @@
 import { useState } from "react";
 import styles from "./Playlists.module.css";
-import TrackRow from "../tracks/TrackRow";
+import PlaylistTrackRow from "./PlaylistTrackRow";
 
-const PlaylistRow = ({ playlist, onDelete }) => {
+const PlaylistRow = ({
+  playlist,
+  onDelete,
+  onRemoveTrackFromPlaylist,
+  handlePlay,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -29,9 +34,19 @@ const PlaylistRow = ({ playlist, onDelete }) => {
       </div>
       {isExpanded && (
         <div className={styles.tracksList}>
-          {playlist.tracks?.map((track) => (
-            <TrackRow key={track.id} track={track} />
-          ))}
+          {playlist.tracks?.length > 0 ? (
+            playlist.tracks.map((track) => (
+              <PlaylistTrackRow
+                key={track.id}
+                track={track}
+                playlistId={playlist.id}
+                onRemoveTrackFromPlaylist={onRemoveTrackFromPlaylist}
+                handlePlay={handlePlay}
+              />
+            ))
+          ) : (
+            <div className={styles.noTracks}>No tracks in this playlist.</div>
+          )}
         </div>
       )}
     </>
