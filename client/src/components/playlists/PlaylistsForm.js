@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Playlists.module.css";
+import styles from "./PlaylistsForm.module.css";
 
 function PlaylistsForm({ onSubmit }) {
   const [formData, setFormData] = useState({

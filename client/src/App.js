@@ -4,14 +4,21 @@ import logo from "./assets/logo.svg";
 import TracksPage from "./components/tracks/TracksPage";
 import PlaylistsPage from "./components/playlists/PlaylistsPage";
 import AudioPlayer from "./components/audioplayer/AudioPlayer";
+import { usePlaylists } from "./hooks/usePlaylists";
+import { useTracks } from "./hooks/useTracks";
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState();
-  const [currentPath, setCurrentPath] = useState(
-    window.location.pathname || "/tracks"
-  );
-  const [tracks, setTracks] = useState([]);
-  const [playlists, setPlaylists] = useState([]);
+  const [currentPath, setCurrentPath] = useState("/tracks");
+
+  const { tracks } = useTracks();
+  const {
+    playlists,
+    createPlaylist,
+    deletePlaylist,
+    addTrackToPlaylist,
+    removeTrackFromPlaylist,
+  } = usePlaylists();
 
   const navigate = (path, e) => {
     e.preventDefault();
@@ -20,100 +27,13 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://0.0.0.0:8000/tracks/", { mode: "cors" })
-      .then((res) => res.json())
-      .then((data) => setTracks(data));
+    const path = window.location.pathname;
+    if (path === "/playlists") {
+      setCurrentPath(path);
+    }
   }, []);
 
-  useEffect(() => {
-    fetch("http://0.0.0.0:8000/playlists/", { mode: "cors" })
-      .then((res) => res.json())
-      .then((data) => setPlaylists(data));
-  }, []);
-
-  const handleCreatePlaylist = (playlist) => {
-    fetch("http://0.0.0.0:8000/playlists/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify(playlist),
-    })
-      .then((res) => res.json())
-      .then((newPlaylist) => {
-        setPlaylists([...playlists, newPlaylist]);
-      })
-      .catch((error) => {
-        console.error("Error creating playlist:", error);
-      });
-  };
-
-  const handleDeletePlaylist = (playlistId) => {
-    fetch(`http://0.0.0.0:8000/playlists/${playlistId}`, {
-      method: "DELETE",
-      mode: "cors",
-    })
-      .then(() => {
-        setPlaylists(
-          playlists.filter((playlist) => playlist.id !== playlistId)
-        );
-      })
-      .catch((error) => {
-        console.error("Error deleting playlist:", error);
-      });
-  };
-
-  const handleAddTrackToPlaylist = (track, playlistId) => {
-    fetch(`http://0.0.0.0:8000/playlists/${playlistId}/add_track/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({ track_id: track.id }),
-    })
-      .then(() => {
-        fetch(`http://0.0.0.0:8000/playlists/${playlistId}/`, { mode: "cors" })
-          .then((res) => res.json())
-          .then((data) => {
-            setPlaylists(
-              playlists.map((playlist) =>
-                playlist.id === playlistId ? data : playlist
-              )
-            );
-          });
-      })
-      .catch((error) => {
-        console.error("Error adding track to playlist:", error);
-      });
-  };
-
-  const handleRemoveTrackFromPlaylist = (track, playlistId) => {
-    fetch(`http://0.0.0.0:8000/playlists/${playlistId}/remove_track/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({ track_id: track.id }),
-    })
-      .then(() => {
-        setPlaylists(
-          playlists.map((playlist) =>
-            playlist.id === playlistId
-              ? {
-                  ...playlist,
-                  tracks: playlist.tracks.filter((t) => t.id !== track.id),
-                }
-              : playlist
-          )
-        );
-      })
-      .catch((error) => {
-        console.error("Error removing track from playlist:", error);
-      });
-  };
+  if (!tracks || !playlists) return <div>Loading...</div>;
 
   return (
     <>
@@ -146,15 +66,15 @@ function App() {
             handlePlay={setCurrentTrack}
             tracks={tracks}
             playlists={playlists}
-            onAddToPlaylist={handleAddTrackToPlaylist}
+            onAddToPlaylist={addTrackToPlaylist}
           />
         )}
         {currentPath === "/playlists" && (
           <PlaylistsPage
             playlists={playlists}
-            onCreatePlaylist={handleCreatePlaylist}
-            onDeletePlaylist={handleDeletePlaylist}
-            onRemoveTrackFromPlaylist={handleRemoveTrackFromPlaylist}
+            onCreatePlaylist={createPlaylist}
+            onDeletePlaylist={deletePlaylist}
+            onRemoveTrackFromPlaylist={removeTrackFromPlaylist}
             handlePlay={setCurrentTrack}
           />
         )}

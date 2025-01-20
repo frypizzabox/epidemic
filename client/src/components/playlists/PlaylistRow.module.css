@@ -1,0 +1,59 @@
+.playlistRow {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  position: relative;
+}
+
+.playlistRow:last-child {
+  border-bottom: none;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+
+.deleteButton:hover {
+  color: #ff0000;
+}
+
+.playlistTitle {
+  font-weight: 600;
+}
+
+.playlistTracks {
+  margin-left: 0.5rem;
+  color: #767676;
+}
+
+.playlistTracks:before {
+  content: "(";
+}
+
+.playlistTracks:after {
+  content: ")";
+}
+
+.arrow {
+  display: inline-block;
+  margin-right: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.arrow::before {
+  content: "▶";
+  font-size: 0.8rem;
+  color: #767676;
+}
+
+.expanded .arrow {
+  transform: rotate(90deg);
+}

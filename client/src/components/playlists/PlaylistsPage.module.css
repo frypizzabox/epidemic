@@ -1,0 +1,10 @@
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.noPlaylists {
+  margin-top: 2rem;
+  text-align: center;
+  color: #767676;
+}

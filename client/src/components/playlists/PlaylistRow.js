@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Playlists.module.css";
+import styles from "./PlaylistRow.module.css";
 import PlaylistTrackRow from "./PlaylistTrackRow";
 
 const PlaylistRow = ({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Tracks.module.css";
+import styles from "./TrackRow.module.css";
 import playIcon from "../../assets/play.svg";
 import addIcon from "../../assets/add.svg";
 

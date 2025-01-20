@@ -1,7 +1,7 @@
 import React from "react";
 import PlaylistsForm from "./PlaylistsForm";
 import PlaylistRow from "./PlaylistRow";
-import styles from "./Playlists.module.css";
+import styles from "./PlaylistsPage.module.css";
 
 function PlaylistsPage({
   playlists,

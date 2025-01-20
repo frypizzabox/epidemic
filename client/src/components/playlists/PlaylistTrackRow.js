@@ -1,4 +1,4 @@
-import styles from "./Playlists.module.css";
+import styles from "./PlaylistTrackRow.module.css";
 import playIcon from "../../assets/play.svg";
 
 function PlaylistTrackRow({
@@ -15,7 +15,7 @@ function PlaylistTrackRow({
       <div className={styles.trackInfo}>
         <div className={styles.trackTitle}>{track.title}</div>
         <div className={styles.trackArtist}>
-          {track.main_artists.join(", ")}
+          {track.main_artists && track.main_artists.join(", ")}
         </div>
       </div>
       <button

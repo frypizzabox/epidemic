@@ -1,6 +1,7 @@
 import React from "react";
 import TrackRow from "./TrackRow";
-import styles from "./Tracks.module.css";
+import styles from "./TracksPage.module.css";
+
 function TracksPage({ handlePlay, tracks, playlists, onAddToPlaylist }) {
   return (
     <>

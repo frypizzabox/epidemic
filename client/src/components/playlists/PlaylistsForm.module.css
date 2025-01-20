@@ -1,0 +1,35 @@
+.playlistForm {
+  height: 4em;
+  padding-top: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: left;
+}
+
+.fields input {
+  flex: 1;
+  min-width: 5rem;
+  max-width: 20rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.fields button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fields button:hover {
+  background-color: #0056b3;
+} 
