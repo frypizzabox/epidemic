@@ -52,7 +52,7 @@ class Track(models.Model):
 
 class Playlist(models.Model):
     name = models.CharField(max_length=200, null=False)
-    tracks = models.ManyToManyField(Track, related_name="playlists")
+    tracks = models.ManyToManyField(Track, related_name="track")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
