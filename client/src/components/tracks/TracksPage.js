@@ -5,9 +5,9 @@ function TracksPage({ handlePlay, tracks, playlists, onAddToPlaylist }) {
   return (
     <>
       {tracks.map((track, ix) => (
-        <TrackRow 
-          key={ix} 
-          track={track} 
+        <TrackRow
+          key={ix}
+          track={track}
           handlePlay={handlePlay}
           playlists={playlists}
           onAddToPlaylist={onAddToPlaylist}

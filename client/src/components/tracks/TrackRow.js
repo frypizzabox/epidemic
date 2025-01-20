@@ -23,8 +23,8 @@ function TrackRow({ track, handlePlay, playlists, onAddToPlaylist }) {
         </div>
       </div>
       <div className={styles.playlistMenuContainer}>
-        <button 
-          className={styles.playlistMenuButton} 
+        <button
+          className={styles.playlistMenuButton}
           onClick={() => setShowMenu(!showMenu)}
         >
           <img src={addIcon} alt="Add to playlist" width="24" height="24" />
@@ -33,7 +33,7 @@ function TrackRow({ track, handlePlay, playlists, onAddToPlaylist }) {
           <div className={styles.playlistMenu}>
             {playlists.length > 0 ? (
               playlists.map((playlist) => (
-                <div 
+                <div
                   key={playlist.id}
                   onClick={() => handleAddToPlaylist(playlist.id)}
                   className={styles.playlistMenuItem}
@@ -42,7 +42,9 @@ function TrackRow({ track, handlePlay, playlists, onAddToPlaylist }) {
                 </div>
               ))
             ) : (
-              <div className={styles.playlistMenuItem}>No playlists available</div>
+              <div className={styles.playlistMenuItem}>
+                No playlists available
+              </div>
             )}
           </div>
         )}

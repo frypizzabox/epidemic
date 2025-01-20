@@ -7,13 +7,15 @@ import AudioPlayer from "./components/audioplayer/AudioPlayer";
 
 function App() {
   const [currentTrack, setCurrentTrack] = useState();
-  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/tracks');
+  const [currentPath, setCurrentPath] = useState(
+    window.location.pathname || "/tracks"
+  );
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
 
   const navigate = (path, e) => {
     e.preventDefault();
-    window.history.pushState({}, '', path);
+    window.history.pushState({}, "", path);
     setCurrentPath(path);
   };
 
@@ -53,7 +55,9 @@ function App() {
       mode: "cors",
     })
       .then(() => {
-        setPlaylists(playlists.filter(playlist => playlist.id !== playlistId));
+        setPlaylists(
+          playlists.filter((playlist) => playlist.id !== playlistId)
+        );
       })
       .catch((error) => {
         console.error("Error deleting playlist:", error);
@@ -72,9 +76,11 @@ function App() {
       .then((res) => res.json())
       .then(() => {
         setPlaylists(
-          playlists.map(playlist => playlist.id === playlistId 
-            ? { ...playlist, tracks: [...playlist.tracks, trackId] } 
-            : playlist)
+          playlists.map((playlist) =>
+            playlist.id === playlistId
+              ? { ...playlist, tracks: [...playlist.tracks, trackId] }
+              : playlist
+          )
         );
       })
       .catch((error) => {
@@ -89,38 +95,40 @@ function App() {
           <img src={logo} className={styles.logo} alt="Logo" />
           <ul className={styles.menu}>
             <li>
-              <a 
-                href="/tracks" 
-                onClick={(e) => navigate('/tracks', e)}
-                className={currentPath === '/tracks' ? styles.active : ''}
+              <a
+                href="/tracks"
+                onClick={(e) => navigate("/tracks", e)}
+                className={currentPath === "/tracks" ? styles.active : ""}
               >
                 Tracks
               </a>
             </li>
             <li>
-              <a 
+              <a
                 href="/playlists"
-                onClick={(e) => navigate('/playlists', e)}
-                className={currentPath === '/playlists' ? styles.active : ''}
+                onClick={(e) => navigate("/playlists", e)}
+                className={currentPath === "/playlists" ? styles.active : ""}
               >
                 Playlists
               </a>
             </li>
           </ul>
         </nav>
-        {currentPath === '/tracks' && (
-          <TracksPage 
-            handlePlay={setCurrentTrack} 
+        {currentPath === "/tracks" && (
+          <TracksPage
+            handlePlay={setCurrentTrack}
             tracks={tracks}
             playlists={playlists}
             onAddToPlaylist={handleAddTrackToPlaylist}
           />
         )}
-        {currentPath === '/playlists' && <PlaylistsPage 
-          playlists={playlists}
-          onCreatePlaylist={handleCreatePlaylist}
-          onDeletePlaylist={handleDeletePlaylist}
-        />}
+        {currentPath === "/playlists" && (
+          <PlaylistsPage
+            playlists={playlists}
+            onCreatePlaylist={handleCreatePlaylist}
+            onDeletePlaylist={handleDeletePlaylist}
+          />
+        )}
       </main>
       {currentTrack && <AudioPlayer track={currentTrack} />}
     </>
