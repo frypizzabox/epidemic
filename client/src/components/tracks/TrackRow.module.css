@@ -1,0 +1,65 @@
+.trackRow {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  border-bottom: 1px solid #333;
+}
+
+.trackRow:last-child {
+  border-bottom: none;
+}
+
+.trackPlay {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #333;
+  box-shadow: 0;
+  border: 0;
+  margin-right: 1rem;
+  padding: 0;
+}
+
+.trackTitle {
+  font-weight: 600;
+}
+
+.trackArtist {
+  color: #767676;
+}
+
+.playlistMenuContainer {
+  position: relative;
+  margin-left: auto;
+}
+
+.playlistMenuButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.playlistMenuButton:hover {
+  opacity: 0.8;
+}
+
+.playlistMenu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #282828;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  min-width: 160px;
+  z-index: 1000;
+}
+
+.playlistMenu div {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.playlistMenu div:hover {
+  background: #383838;
+}

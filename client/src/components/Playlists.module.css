@@ -1,0 +1,146 @@
+.playlistRow {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  position: relative;
+}
+
+.playlistRow:last-child {
+  border-bottom: none;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+
+.deleteButton:hover {
+  color: #ff0000;
+}
+
+.playlistTitle {
+  font-weight: 600;
+}
+
+.playlistTracks {
+  margin-left: 0.5rem;
+  color: #767676;
+}
+
+.playlistTracks:before {
+  content: "(";
+}
+
+.playlistTracks:after {
+  content: ")";
+}
+
+.playlistForm {
+  height: 4em;
+  padding-top: 1rem;
+  border-bottom: 1px solid #333;
+}
+
+.playlistForm .fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: left;
+}
+
+.playlistForm .fields input {
+  flex: 1;
+  min-width: 5rem;
+  max-width: 20rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.playlistForm .fields button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.playlistForm .fields button:hover {
+  background-color: #0056b3;
+}
+
+.noPlaylists {
+  margin-top: 2rem;
+  text-align: center;
+  color: #767676;
+}
+
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow {
+  display: inline-block;
+  margin-right: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.arrow::before {
+  content: "▶";
+  font-size: 0.8rem;
+  color: #767676;
+}
+
+.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+.tracksList {
+  padding-left: 1.5rem;
+}
+
+.trackRow {
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  border-bottom: 1px solid #333;
+}
+
+.trackRow:last-child {
+  border-bottom: none;
+}
+
+.trackPlay {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #333;
+  box-shadow: 0;
+  border: 0;
+  margin-right: 1rem;
+  padding: 0;
+}
+
+.trackTitle {
+  font-weight: 600;
+}
+
+.trackArtist {
+  color: #767676;
+}
+
+.noTracks {
+  margin-top: 2rem;
+  text-align: center;
+  color: #767676;
+}
